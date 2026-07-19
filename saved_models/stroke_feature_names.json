@@ -1,0 +1,41 @@
+{
+  "disease": "stroke",
+  "display_name": "Stroke",
+  "original_features": [
+    "sex",
+    "age",
+    "hypertension",
+    "heart_disease",
+    "ever_married",
+    "work_type",
+    "residence_type",
+    "avg_glucose_level",
+    "bmi",
+    "smoking_status"
+  ],
+  "numeric_features": [
+    "sex",
+    "age",
+    "hypertension",
+    "heart_disease",
+    "ever_married",
+    "work_type",
+    "residence_type",
+    "avg_glucose_level",
+    "bmi",
+    "smoking_status"
+  ],
+  "categorical_features": [],
+  "transformed_features": [
+    "sex",
+    "age",
+    "hypertension",
+    "heart_disease",
+    "ever_married",
+    "work_type",
+    "residence_type",
+    "avg_glucose_level",
+    "bmi",
+    "smoking_status"
+  ]
+}

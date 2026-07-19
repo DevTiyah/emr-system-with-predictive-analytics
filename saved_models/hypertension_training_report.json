@@ -1,0 +1,247 @@
+{
+  "dataset": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\datasets\\hypertension_data.csv",
+  "rows": 26083,
+  "target": "target",
+  "class_balance": {
+    "1": 11419,
+    "0": 9447
+  },
+  "candidate_results": [
+    {
+      "model": "logistic_regression",
+      "accuracy": 0.8352,
+      "precision": 0.8246,
+      "recall": 0.8876,
+      "f1": 0.8549,
+      "roc_auc": 0.905,
+      "confusion_matrix": [
+        [
+          1823,
+          539
+        ],
+        [
+          321,
+          2534
+        ]
+      ],
+      "classification_report": {
+        "0": {
+          "precision": 0.8502798507462687,
+          "recall": 0.7718035563082134,
+          "f1-score": 0.8091433644030182,
+          "support": 2362.0
+        },
+        "1": {
+          "precision": 0.8246013667425968,
+          "recall": 0.8875656742556918,
+          "f1-score": 0.8549257759784076,
+          "support": 2855.0
+        },
+        "accuracy": 0.8351543032394096,
+        "macro avg": {
+          "precision": 0.8374406087444327,
+          "recall": 0.8296846152819526,
+          "f1-score": 0.8320345701907128,
+          "support": 5217.0
+        },
+        "weighted avg": {
+          "precision": 0.8362273163720146,
+          "recall": 0.8351543032394096,
+          "f1-score": 0.8341977606168837,
+          "support": 5217.0
+        }
+      }
+    },
+    {
+      "model": "random_forest",
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "confusion_matrix": [
+        [
+          2362,
+          0
+        ],
+        [
+          0,
+          2855
+        ]
+      ],
+      "classification_report": {
+        "0": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 2362.0
+        },
+        "1": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 2855.0
+        },
+        "accuracy": 1.0,
+        "macro avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5217.0
+        },
+        "weighted avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5217.0
+        }
+      }
+    },
+    {
+      "model": "gradient_boosting",
+      "accuracy": 0.9686,
+      "precision": 0.9632,
+      "recall": 0.98,
+      "f1": 0.9715,
+      "roc_auc": 0.9989,
+      "confusion_matrix": [
+        [
+          2255,
+          107
+        ],
+        [
+          57,
+          2798
+        ]
+      ],
+      "classification_report": {
+        "0": {
+          "precision": 0.9753460207612457,
+          "recall": 0.9546994072819645,
+          "f1-score": 0.9649122807017544,
+          "support": 2362.0
+        },
+        "1": {
+          "precision": 0.9631669535283993,
+          "recall": 0.9800350262697023,
+          "f1-score": 0.9715277777777778,
+          "support": 2855.0
+        },
+        "accuracy": 0.9685643089898409,
+        "macro avg": {
+          "precision": 0.9692564871448225,
+          "recall": 0.9673672167758334,
+          "f1-score": 0.968220029239766,
+          "support": 5217.0
+        },
+        "weighted avg": {
+          "precision": 0.9686810338051834,
+          "recall": 0.9685643089898409,
+          "f1-score": 0.9685326073553957,
+          "support": 5217.0
+        }
+      }
+    }
+  ],
+  "best_model": {
+    "model": "random_forest",
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "roc_auc": 1.0,
+    "confusion_matrix": [
+      [
+        2362,
+        0
+      ],
+      [
+        0,
+        2855
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2362.0
+      },
+      "1": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2855.0
+      },
+      "accuracy": 1.0,
+      "macro avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5217.0
+      },
+      "weighted avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5217.0
+      }
+    }
+  },
+  "artifacts": {
+    "model": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\hypertension_model.pkl",
+    "scaler": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\hypertension_scaler.pkl",
+    "feature_names": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\hypertension_feature_names.json",
+    "report": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\hypertension_training_report.json"
+  },
+  "feature_manifest": {
+    "disease": "hypertension",
+    "display_name": "Hypertension",
+    "original_features": [
+      "age",
+      "sex",
+      "cp",
+      "trestbps",
+      "chol",
+      "fbs",
+      "restecg",
+      "thalach",
+      "exang",
+      "oldpeak",
+      "slope",
+      "ca",
+      "thal"
+    ],
+    "numeric_features": [
+      "age",
+      "sex",
+      "cp",
+      "trestbps",
+      "chol",
+      "fbs",
+      "restecg",
+      "thalach",
+      "exang",
+      "oldpeak",
+      "slope",
+      "ca",
+      "thal"
+    ],
+    "categorical_features": [],
+    "transformed_features": [
+      "age",
+      "sex",
+      "cp",
+      "trestbps",
+      "chol",
+      "fbs",
+      "restecg",
+      "thalach",
+      "exang",
+      "oldpeak",
+      "slope",
+      "ca",
+      "thal"
+    ]
+  }
+}

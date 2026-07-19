@@ -1,0 +1,259 @@
+{
+  "dataset": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\datasets\\diabetes_data.csv",
+  "rows": 64020,
+  "target": "diabetes",
+  "class_balance": {
+    "1": 26718,
+    "0": 24498
+  },
+  "candidate_results": [
+    {
+      "model": "logistic_regression",
+      "accuracy": 0.7345,
+      "precision": 0.7438,
+      "recall": 0.7493,
+      "f1": 0.7465,
+      "roc_auc": 0.8068,
+      "confusion_matrix": [
+        [
+          4400,
+          1724
+        ],
+        [
+          1675,
+          5005
+        ]
+      ],
+      "classification_report": {
+        "0": {
+          "precision": 0.7242798353909465,
+          "recall": 0.7184846505551927,
+          "f1-score": 0.721370604147881,
+          "support": 6124.0
+        },
+        "1": {
+          "precision": 0.7437955119631446,
+          "recall": 0.749251497005988,
+          "f1-score": 0.7465135356849877,
+          "support": 6680.0
+        },
+        "accuracy": 0.7345360824742269,
+        "macro avg": {
+          "precision": 0.7340376736770455,
+          "recall": 0.7338680737805904,
+          "f1-score": 0.7339420699164343,
+          "support": 12804.0
+        },
+        "weighted avg": {
+          "precision": 0.7344613973639459,
+          "recall": 0.7345360824742269,
+          "f1-score": 0.7344879723662404,
+          "support": 12804.0
+        }
+      }
+    },
+    {
+      "model": "random_forest",
+      "accuracy": 0.6988,
+      "precision": 0.6973,
+      "recall": 0.7469,
+      "f1": 0.7212,
+      "roc_auc": 0.7554,
+      "confusion_matrix": [
+        [
+          3958,
+          2166
+        ],
+        [
+          1691,
+          4989
+        ]
+      ],
+      "classification_report": {
+        "0": {
+          "precision": 0.7006549831828642,
+          "recall": 0.6463096015676029,
+          "f1-score": 0.6723859678926357,
+          "support": 6124.0
+        },
+        "1": {
+          "precision": 0.6972746331236898,
+          "recall": 0.7468562874251496,
+          "f1-score": 0.7212143115287315,
+          "support": 6680.0
+        },
+        "accuracy": 0.6987660106216808,
+        "macro avg": {
+          "precision": 0.698964808153277,
+          "recall": 0.6965829444963763,
+          "f1-score": 0.6968001397106836,
+          "support": 12804.0
+        },
+        "weighted avg": {
+          "precision": 0.6988914141110675,
+          "recall": 0.6987660106216808,
+          "f1-score": 0.6978602989992524,
+          "support": 12804.0
+        }
+      }
+    },
+    {
+      "model": "gradient_boosting",
+      "accuracy": 0.7375,
+      "precision": 0.7378,
+      "recall": 0.7708,
+      "f1": 0.7539,
+      "roc_auc": 0.8126,
+      "confusion_matrix": [
+        [
+          4294,
+          1830
+        ],
+        [
+          1531,
+          5149
+        ]
+      ],
+      "classification_report": {
+        "0": {
+          "precision": 0.7371673819742489,
+          "recall": 0.701175702155454,
+          "f1-score": 0.7187212319022512,
+          "support": 6124.0
+        },
+        "1": {
+          "precision": 0.7377847829201891,
+          "recall": 0.770808383233533,
+          "f1-score": 0.7539351343436562,
+          "support": 6680.0
+        },
+        "accuracy": 0.7375039050296782,
+        "macro avg": {
+          "precision": 0.7374760824472191,
+          "recall": 0.7359920426944935,
+          "f1-score": 0.7363281831229538,
+          "support": 12804.0
+        },
+        "weighted avg": {
+          "precision": 0.7374894874349549,
+          "recall": 0.7375039050296782,
+          "f1-score": 0.7370927461406599,
+          "support": 12804.0
+        }
+      }
+    }
+  ],
+  "best_model": {
+    "model": "gradient_boosting",
+    "accuracy": 0.7375,
+    "precision": 0.7378,
+    "recall": 0.7708,
+    "f1": 0.7539,
+    "roc_auc": 0.8126,
+    "confusion_matrix": [
+      [
+        4294,
+        1830
+      ],
+      [
+        1531,
+        5149
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.7371673819742489,
+        "recall": 0.701175702155454,
+        "f1-score": 0.7187212319022512,
+        "support": 6124.0
+      },
+      "1": {
+        "precision": 0.7377847829201891,
+        "recall": 0.770808383233533,
+        "f1-score": 0.7539351343436562,
+        "support": 6680.0
+      },
+      "accuracy": 0.7375039050296782,
+      "macro avg": {
+        "precision": 0.7374760824472191,
+        "recall": 0.7359920426944935,
+        "f1-score": 0.7363281831229538,
+        "support": 12804.0
+      },
+      "weighted avg": {
+        "precision": 0.7374894874349549,
+        "recall": 0.7375039050296782,
+        "f1-score": 0.7370927461406599,
+        "support": 12804.0
+      }
+    }
+  },
+  "artifacts": {
+    "model": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\diabetes_model.pkl",
+    "scaler": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\diabetes_scaler.pkl",
+    "feature_names": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\diabetes_feature_names.json",
+    "report": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\diabetes_training_report.json"
+  },
+  "feature_manifest": {
+    "disease": "diabetes",
+    "display_name": "Diabetes",
+    "original_features": [
+      "age",
+      "sex",
+      "highchol",
+      "cholcheck",
+      "bmi",
+      "smoker",
+      "heartdiseaseorattack",
+      "physactivity",
+      "fruits",
+      "veggies",
+      "hvyalcoholconsump",
+      "genhlth",
+      "menthlth",
+      "physhlth",
+      "diffwalk",
+      "stroke",
+      "highbp"
+    ],
+    "numeric_features": [
+      "age",
+      "sex",
+      "highchol",
+      "cholcheck",
+      "bmi",
+      "smoker",
+      "heartdiseaseorattack",
+      "physactivity",
+      "fruits",
+      "veggies",
+      "hvyalcoholconsump",
+      "genhlth",
+      "menthlth",
+      "physhlth",
+      "diffwalk",
+      "stroke",
+      "highbp"
+    ],
+    "categorical_features": [],
+    "transformed_features": [
+      "age",
+      "sex",
+      "highchol",
+      "cholcheck",
+      "bmi",
+      "smoker",
+      "heartdiseaseorattack",
+      "physactivity",
+      "fruits",
+      "veggies",
+      "hvyalcoholconsump",
+      "genhlth",
+      "menthlth",
+      "physhlth",
+      "diffwalk",
+      "stroke",
+      "highbp"
+    ]
+  }
+}

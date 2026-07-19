@@ -1,0 +1,238 @@
+{
+  "dataset": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\datasets\\stroke_data.csv",
+  "rows": 40910,
+  "target": "stroke",
+  "class_balance": {
+    "1": 16368,
+    "0": 16360
+  },
+  "candidate_results": [
+    {
+      "model": "logistic_regression",
+      "accuracy": 0.6893,
+      "precision": 0.714,
+      "recall": 0.632,
+      "f1": 0.6705,
+      "roc_auc": 0.747,
+      "confusion_matrix": [
+        [
+          3054,
+          1036
+        ],
+        [
+          1506,
+          2586
+        ]
+      ],
+      "classification_report": {
+        "0": {
+          "precision": 0.6697368421052632,
+          "recall": 0.7466992665036675,
+          "f1-score": 0.7061271676300578,
+          "support": 4090.0
+        },
+        "1": {
+          "precision": 0.713970182219768,
+          "recall": 0.6319648093841642,
+          "f1-score": 0.6704692766398755,
+          "support": 4092.0
+        },
+        "accuracy": 0.6893180151552187,
+        "macro avg": {
+          "precision": 0.6918535121625156,
+          "recall": 0.6893320379439158,
+          "f1-score": 0.6882982221349667,
+          "support": 8182.0
+        },
+        "weighted avg": {
+          "precision": 0.6918589183395034,
+          "recall": 0.6893180151552187,
+          "f1-score": 0.6882938640451365,
+          "support": 8182.0
+        }
+      }
+    },
+    {
+      "model": "random_forest",
+      "accuracy": 0.9982,
+      "precision": 0.9963,
+      "recall": 1.0,
+      "f1": 0.9982,
+      "roc_auc": 1.0,
+      "confusion_matrix": [
+        [
+          4075,
+          15
+        ],
+        [
+          0,
+          4092
+        ]
+      ],
+      "classification_report": {
+        "0": {
+          "precision": 1.0,
+          "recall": 0.9963325183374083,
+          "f1-score": 0.998162890385793,
+          "support": 4090.0
+        },
+        "1": {
+          "precision": 0.9963476990504018,
+          "recall": 1.0,
+          "f1-score": 0.9981705085986096,
+          "support": 4092.0
+        },
+        "accuracy": 0.998166707406502,
+        "macro avg": {
+          "precision": 0.9981738495252008,
+          "recall": 0.9981662591687042,
+          "f1-score": 0.9981666994922013,
+          "support": 8182.0
+        },
+        "weighted avg": {
+          "precision": 0.9981734031427822,
+          "recall": 0.998166707406502,
+          "f1-score": 0.9981667004232955,
+          "support": 8182.0
+        }
+      }
+    },
+    {
+      "model": "gradient_boosting",
+      "accuracy": 0.804,
+      "precision": 0.8112,
+      "recall": 0.7925,
+      "f1": 0.8017,
+      "roc_auc": 0.8872,
+      "confusion_matrix": [
+        [
+          3335,
+          755
+        ],
+        [
+          849,
+          3243
+        ]
+      ],
+      "classification_report": {
+        "0": {
+          "precision": 0.7970841300191205,
+          "recall": 0.815403422982885,
+          "f1-score": 0.8061397147691564,
+          "support": 4090.0
+        },
+        "1": {
+          "precision": 0.8111555777888945,
+          "recall": 0.7925219941348973,
+          "f1-score": 0.8017305315203955,
+          "support": 4092.0
+        },
+        "accuracy": 0.8039599120019555,
+        "macro avg": {
+          "precision": 0.8041198539040075,
+          "recall": 0.8039627085588912,
+          "f1-score": 0.803935123144776,
+          "support": 8182.0
+        },
+        "weighted avg": {
+          "precision": 0.8041215737094058,
+          "recall": 0.8039599120019555,
+          "f1-score": 0.8039345842565764,
+          "support": 8182.0
+        }
+      }
+    }
+  ],
+  "best_model": {
+    "model": "random_forest",
+    "accuracy": 0.9982,
+    "precision": 0.9963,
+    "recall": 1.0,
+    "f1": 0.9982,
+    "roc_auc": 1.0,
+    "confusion_matrix": [
+      [
+        4075,
+        15
+      ],
+      [
+        0,
+        4092
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 1.0,
+        "recall": 0.9963325183374083,
+        "f1-score": 0.998162890385793,
+        "support": 4090.0
+      },
+      "1": {
+        "precision": 0.9963476990504018,
+        "recall": 1.0,
+        "f1-score": 0.9981705085986096,
+        "support": 4092.0
+      },
+      "accuracy": 0.998166707406502,
+      "macro avg": {
+        "precision": 0.9981738495252008,
+        "recall": 0.9981662591687042,
+        "f1-score": 0.9981666994922013,
+        "support": 8182.0
+      },
+      "weighted avg": {
+        "precision": 0.9981734031427822,
+        "recall": 0.998166707406502,
+        "f1-score": 0.9981667004232955,
+        "support": 8182.0
+      }
+    }
+  },
+  "artifacts": {
+    "model": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\stroke_model.pkl",
+    "scaler": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\stroke_scaler.pkl",
+    "feature_names": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\stroke_feature_names.json",
+    "report": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\stroke_training_report.json"
+  },
+  "feature_manifest": {
+    "disease": "stroke",
+    "display_name": "Stroke",
+    "original_features": [
+      "sex",
+      "age",
+      "hypertension",
+      "heart_disease",
+      "ever_married",
+      "work_type",
+      "residence_type",
+      "avg_glucose_level",
+      "bmi",
+      "smoking_status"
+    ],
+    "numeric_features": [
+      "sex",
+      "age",
+      "hypertension",
+      "heart_disease",
+      "ever_married",
+      "work_type",
+      "residence_type",
+      "avg_glucose_level",
+      "bmi",
+      "smoking_status"
+    ],
+    "categorical_features": [],
+    "transformed_features": [
+      "sex",
+      "age",
+      "hypertension",
+      "heart_disease",
+      "ever_married",
+      "work_type",
+      "residence_type",
+      "avg_glucose_level",
+      "bmi",
+      "smoking_status"
+    ]
+  }
+}
