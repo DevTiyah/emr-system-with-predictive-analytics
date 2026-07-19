@@ -39,9 +39,74 @@ templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
 
+def render_page(template_name: str, request: Request, **context: Any) -> HTMLResponse:
+    payload = {"request": request, **context}
+    return templates.TemplateResponse(template_name, payload)
+
+
 @app.get("/", response_class=HTMLResponse, name="index")
 def index(request: Request) -> HTMLResponse:
-    return templates.TemplateResponse("index.html", {"request": request})
+    return render_page("index.html", request)
+
+
+@app.get("/login", response_class=HTMLResponse, name="login")
+def login(request: Request) -> HTMLResponse:
+    return render_page(
+        "login.html",
+        request,
+        page_title="Login",
+        auth_page="login",
+    )
+
+
+@app.get("/register", response_class=HTMLResponse, name="register")
+def register(request: Request) -> HTMLResponse:
+    return render_page(
+        "register.html",
+        request,
+        page_title="Register",
+        auth_page="register",
+    )
+
+
+@app.get("/forgot-password", response_class=HTMLResponse, name="forgot_password")
+def forgot_password(request: Request) -> HTMLResponse:
+    return render_page(
+        "forgot_password.html",
+        request,
+        page_title="Forgot Password",
+        auth_page="forgot-password",
+    )
+
+
+@app.get("/reset-password", response_class=HTMLResponse, name="reset_password")
+def reset_password(request: Request) -> HTMLResponse:
+    return render_page(
+        "reset_password.html",
+        request,
+        page_title="Reset Password",
+        auth_page="reset-password",
+    )
+
+
+@app.get("/profile", response_class=HTMLResponse, name="profile_page")
+def profile_page(request: Request) -> HTMLResponse:
+    return render_page(
+        "profile.html",
+        request,
+        page_title="Profile",
+        auth_page="profile",
+    )
+
+
+@app.get("/logout", response_class=HTMLResponse, name="logout")
+def logout(request: Request) -> HTMLResponse:
+    return render_page(
+        "logout.html",
+        request,
+        page_title="Logout",
+        auth_page="logout",
+    )
 
 
 @app.get("/api/bootstrap")

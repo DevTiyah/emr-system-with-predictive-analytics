@@ -9,170 +9,259 @@
 </head>
 
 <body>
-    <div class="app">
-        <aside class="sidebar">
-            <div class="brand"><span class="brand-mark">✚</span> HealthWise</div>
+    <div class="app app-shell">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand-row">
+                <div class="brand"><span class="brand-mark">✚</span> HealthWise</div>
+                <button class="sidebar-close" type="button" aria-label="Close sidebar" data-close-sidebar>×</button>
+            </div>
             <div>
                 <div class="workspace">Clinical workspace</div>
                 <nav class="nav" aria-label="Main navigation">
-                    <button class="active" data-page="dashboard"><span class="icon">◫</span> Dashboard</button><button
-                        data-page="patients"><span class="icon">♙</span> Patients</button><button
-                        data-page="visit"><span class="icon">✚</span> New clinical visit</button><button
-                        data-page="appointments"><span class="icon">◷</span> Appointments</button>
+                    <button class="active" data-page="dashboard"><span class="icon">◫</span> Dashboard</button>
+                    <button data-page="patients"><span class="icon">♙</span> Patients</button>
+                    <button data-page="visit"><span class="icon">✚</span> New clinical visit</button>
+                    <button data-page="appointments"><span class="icon">◷</span> Appointments</button>
                 </nav>
             </div>
             <div>
                 <div class="workspace">Insights</div>
-                <nav class="nav"><button data-page="analytics"><span class="icon">◔</span> Analytics</button><button
-                        data-page="reports"><span class="icon">▤</span> Reports</button></nav>
+                <nav class="nav">
+                    <button data-page="prediction"><span class="icon">✦</span> AI Predictions</button>
+                    <button data-page="analytics"><span class="icon">◔</span> Analytics</button>
+                    <button data-page="reports"><span class="icon">▤</span> Reports</button>
+                </nav>
             </div>
             <div>
                 <div class="workspace">Administration</div>
-                <nav class="nav"><button data-page="users"><span class="icon">♧</span> Users</button><button
-                        data-page="settings"><span class="icon">⚙</span> Settings</button></nav>
+                <nav class="nav">
+                    <button data-page="users"><span class="icon">♧</span> Users</button>
+                    <button data-page="settings"><span class="icon">⚙</span> Settings</button>
+                </nav>
             </div>
             <div class="user">
                 <div class="avatar">AO</div>
                 <div><strong>Dr. A. Okafor</strong><small>Medical Officer</small></div>
             </div>
         </aside>
-                        <div class="metric">
-                            <div class="metric-label">Stroke cases</div>
-                            <div class="metric-value" id="stroke-cases">98</div>
-                            <div class="metric-note">3.9% of active patients</div>
-                        </div>
+
+        <div class="sidebar-backdrop" data-close-sidebar></div>
+
         <main class="main">
             <header class="topbar">
-                <div class="crumb">HealthWise EMR <span> / </span><strong id="crumb">Dashboard</strong></div>
-                <div class="top-actions"><button class="btn small" onclick="showPage('visit')">+ New
-                        visit</button><button class="bell" aria-label="Notifications">♧</button>
+                <div class="topbar-left">
+                    <button class="sidebar-toggle" type="button" aria-label="Open sidebar" data-open-sidebar>☰</button>
+                    <div class="crumb">HealthWise EMR <span> / </span><strong id="crumb">Dashboard</strong></div>
+                </div>
+                <div class="topbar-search-wrap">
+                    <label class="topbar-search-label" for="global-search">Global search</label>
+                    <input id="global-search" class="topbar-search" type="search" placeholder="Search patients, visits, conditions">
+                </div>
+                <div class="top-actions">
+                    <button class="bell" aria-label="Notifications">⚑</button>
                     <div class="avatar">AO</div>
-                            <div class="metric-label">Average age</div>
-                            <div class="metric-value" id="average-age">3.6 years</div>
-                            <div class="metric-note">Population average</div>
+                </div>
+            </header>
+
+            <div class="content">
                 <section class="page active" id="dashboard">
-                    <div class="page-title">
+                    <div class="dashboard-hero card">
                         <div>
-                            <h1>Good morning, Dr. Okafor</h1>
-                            <p>Here is an overview of your facility today.</p>
-                        </div><button class="btn primary" onclick="openModal('patient-modal')">+ Register
-                            patient</button>
+                            <div class="eyebrow">Hospital operations overview</div>
+                            <h1>Command center for today’s clinical activity.</h1>
+                            <p>
+                                Track admissions, risk signals, disease trends, and the most urgent patients from a single
+                                dashboard built for hospital workflows.
+                            </p>
+                        </div>
+                        <div class="hero-actions">
+                            <button class="btn primary" onclick="openModal('patient-modal')">+ Register patient</button>
+                            <button class="btn" onclick="showPage('visit')">+ New visit</button>
+                        </div>
                     </div>
-                    <div class="metric-grid">
-                        <div class="metric">
+
+                    <div class="metric-grid dashboard-grid" id="dashboard-stats">
+                        <div class="metric stat-card accent-a">
                             <div class="metric-label">Total patients</div>
-                            <div class="metric-value" id="total-patients">2,486</div>
-                            <div class="metric-note">↑ 8.2% this month</div>
+                            <div class="metric-value" id="dashboard-total-patients">0</div>
+                            <div class="metric-note" id="dashboard-total-patients-note">Updated from live records</div>
                         </div>
-                        <div class="metric">
-                            <div class="metric-label">Visits this month</div>
-                            <div class="metric-value" id="visits-this-month">1,248</div>
-                            <div class="metric-note">↑ 12.5% vs. last month</div>
+                        <div class="metric stat-card accent-b">
+                            <div class="metric-label">High risk patients</div>
+                            <div class="metric-value" id="dashboard-high-risk-patients">0</div>
+                            <div class="metric-note neutral" id="dashboard-high-risk-note">Require clinical review</div>
                         </div>
-                        <div class="metric">
-                            <div class="metric-label">High-risk patients</div>
-                            <div class="metric-value" id="high-risk-patients">84</div>
-                            <div class="metric-note neutral">Requires clinical review</div>
+                        <div class="metric stat-card accent-c">
+                            <div class="metric-label">Diabetes cases</div>
+                            <div class="metric-value" id="dashboard-diabetes-cases">0</div>
+                            <div class="metric-note" id="dashboard-diabetes-note">Derived from hospital analytics</div>
                         </div>
-                        <div class="metric">
-                            <div class="metric-label">Readmission rate</div>
-                            <div class="metric-value" id="readmission-rate">11.8%</div>
-                            <div class="metric-note">↓ 1.4% vs. last month</div>
+                        <div class="metric stat-card accent-d">
+                            <div class="metric-label">Hypertension cases</div>
+                            <div class="metric-value" id="dashboard-hypertension-cases">0</div>
+                            <div class="metric-note" id="dashboard-hypertension-note">Derived from hospital analytics</div>
+                        </div>
+                        <div class="metric stat-card accent-e">
+                            <div class="metric-label">Stroke cases</div>
+                            <div class="metric-value" id="dashboard-stroke-cases">0</div>
+                            <div class="metric-note" id="dashboard-stroke-note">Derived from hospital analytics</div>
+                        </div>
+                        <div class="metric stat-card accent-f">
+                            <div class="metric-label">Today's visits</div>
+                            <div class="metric-value" id="dashboard-visits-this-month">0</div>
+                            <div class="metric-note neutral" id="dashboard-visits-note">From dashboard summary</div>
                         </div>
                     </div>
-                    <div class="grid-2">
-                        <div class="card">
+
+                    <div class="dashboard-layout">
+                        <section class="card chart-card">
                             <div class="card-head">
                                 <div>
-                                    <h2>Visit trends</h2>
-                                    <p class="subtle">Completed patient visits, January–June</p>
+                                    <div class="eyebrow">Visit activity</div>
+                                    <h2>Monthly visits</h2>
+                                    <p class="subtle">Rolling six-month patient activity from the SQLite dataset.</p>
                                 </div>
-                                <div class="legend"><span><i class="dot"
-                                            style="background:var(--brand)"></i>Visits</span></div>
+                                <div class="legend"><span><i class="dot" style="background:var(--brand)"></i>Visits</span></div>
                             </div>
-                            <div class="chart"><svg class="line-chart" viewBox="0 0 600 235" role="img"
-                                    aria-label="Completed visits trend increases from 136 in January to 281 in June">
-                                    <line class="gridline" x1="45" y1="25" x2="585" y2="25" />
-                                    <line class="gridline" x1="45" y1="80" x2="585" y2="80" />
-                                    <line class="gridline" x1="45" y1="135" x2="585" y2="135" />
-                                    <line class="gridline" x1="45" y1="190" x2="585" y2="190" /><text x="4"
-                                        y="29">300</text><text x="4" y="84">200</text><text x="4"
-                                        y="139">100</text><text x="17" y="194">0</text>
-                                    <path class="area"
-                                        d="M55 164 L158 139 L261 147 L364 105 L467 91 L570 35 L570 190 L55 190Z" />
-                                    <path class="line" d="M55 164 L158 139 L261 147 L364 105 L467 91 L570 35" />
-                                    <g>
-                                        <circle class="point" cx="55" cy="164" r="4" />
-                                        <circle class="point" cx="158" cy="139" r="4" />
-                                        <circle class="point" cx="261" cy="147" r="4" />
-                                        <circle class="point" cx="364" cy="105" r="4" />
-                                        <circle class="point" cx="467" cy="91" r="4" />
-                                        <circle class="point" cx="570" cy="35" r="4" />
-                                    </g><text x="47" y="215">Jan</text><text x="150" y="215">Feb</text><text x="253"
-                                        y="215">Mar</text><text x="356" y="215">Apr</text><text x="459"
-                                        y="215">May</text><text x="562" y="215">Jun</text>
-                                </svg></div>
-                        </div>
-                        <div class="card">
+                            <div class="chart dashboard-chart">
+                                <svg class="line-chart dashboard-line-chart" viewBox="0 0 640 260" role="img" aria-label="Monthly visits trend chart"></svg>
+                            </div>
+                        </section>
+
+                        <section class="card chart-card">
                             <div class="card-head">
                                 <div>
+                                    <div class="eyebrow">Case mix</div>
                                     <h2>Disease distribution</h2>
-                                    <p class="subtle">Primary diagnoses this month</p>
+                                    <p class="subtle">Current condition mix across active patients.</p>
                                 </div>
                             </div>
-                            <div class="donut-wrap">
-                                <div class="donut"
-                                    aria-label="Disease distribution: hypertension 38 percent, diabetes 25 percent, respiratory 20 percent, other 17 percent">
-                                </div>
-                                <div class="donut-key"><span><i class="dot"
-                                            style="background:var(--brand)"></i>Hypertension 38%</span><span><i
-                                            class="dot" style="background:var(--blue)"></i>Diabetes 25%</span><span><i
-                                            class="dot" style="background:var(--amber)"></i>Respiratory
-                                        20%</span><span><i class="dot" style="background:#cbd7df"></i>Other 17%</span>
+                            <div class="donut-wrap dashboard-donut-wrap">
+                                <div class="donut dashboard-donut" aria-label="Condition distribution chart"></div>
+                                <div class="donut-key dashboard-donut-key" id="condition-key"></div>
+                            </div>
+                        </section>
+
+                        <section class="card chart-card dashboard-risks">
+                            <div class="card-head">
+                                <div>
+                                    <div class="eyebrow">Risk signal</div>
+                                    <h2>Risk distribution</h2>
+                                    <p class="subtle">Patient risk levels from the latest assessments.</p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-head">
-                            <div>
-                                <h2>Patients requiring attention</h2>
-                                <p class="subtle">High predicted risk or unresolved clinical alerts</p>
-                            </div><button class="btn small" onclick="showPage('patients')">View all patients</button>
-                        </div>
-                        <div class="table-wrap">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Patient</th>
-                                        <th>Last visit</th>
-                                        <th>Clinical alert</th>
-                                        <th>Risk assessment</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="attention-table"></tbody>
-                            </table>
-                        </div>
+                            <div class="risk-list" id="risk-distribution-list"></div>
+                        </section>
+
+                        <section class="card chart-card dashboard-gender">
+                            <div class="card-head">
+                                <div>
+                                    <div class="eyebrow">Population profile</div>
+                                    <h2>Gender distribution</h2>
+                                    <p class="subtle">Balanced view of the active patient base.</p>
+                                </div>
+                            </div>
+                            <div class="bars dashboard-bars" id="gender-bars" aria-label="Gender distribution"></div>
+                        </section>
+
+                        <section class="card chart-card dashboard-alerts-panel">
+                            <div class="card-head">
+                                <div>
+                                    <div class="eyebrow">Clinical operations</div>
+                                    <h2>Alerts panel</h2>
+                                    <p class="subtle">Urgent follow-ups and care reminders.</p>
+                                </div>
+                            </div>
+                            <div class="alerts-grid" id="dashboard-alerts"></div>
+                        </section>
+
+                        <section class="card chart-card dashboard-attention">
+                            <div class="card-head">
+                                <div>
+                                    <div class="eyebrow">Clinical queue</div>
+                                    <h2>Patients requiring attention</h2>
+                                    <p class="subtle">High predicted risk or unresolved clinical alerts.</p>
+                                </div>
+                                <button class="btn small" onclick="showPage('patients')">View patients</button>
+                            </div>
+                            <div class="table-wrap dashboard-table-wrap">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Patient</th>
+                                            <th>Last visit</th>
+                                            <th>Clinical alert</th>
+                                            <th>Risk assessment</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="attention-table"></tbody>
+                                </table>
+                            </div>
+                        </section>
                     </div>
                 </section>
                 <section class="page" id="patients">
                     <div class="page-title">
                         <div>
                             <h1>Patients</h1>
-                            <p>Search and manage the clinical records in your facility.</p>
-                        </div><button class="btn primary" onclick="openModal('patient-modal')">+ Register
-                            patient</button>
+                            <p>Search, filter, sort, and review patient records in one workspace.</p>
+                        </div>
+                        <div class="page-actions">
+                            <button class="btn" onclick="exportPatients()">Export list</button>
+                            <button class="btn primary" onclick="openModal('patient-modal')">+ Register patient</button>
+                        </div>
                     </div>
-                    <div class="card">
-                        <div class="filter-row"><input class="search" id="patient-search" oninput="renderPatients()"
-                                placeholder="Search by name, ID, or phone"><select class="select" id="risk-filter"
-                                onchange="renderPatients()">
-                                <option value="all">All risk levels</option>
-                                <option>High</option>
-                                <option>Moderate</option>
-                                <option>Low</option>
-                            </select><button class="btn" onclick="renderPatients()">Filter</button></div>
+                    <div class="metric-grid patient-summary-grid">
+                        <div class="metric summary-card">
+                            <div class="metric-label">Total patients</div>
+                            <div class="metric-value" id="patient-total-count">0</div>
+                            <div class="metric-note neutral">Live records from the SQLite dataset</div>
+                        </div>
+                        <div class="metric summary-card">
+                            <div class="metric-label">High risk</div>
+                            <div class="metric-value" id="patient-high-risk-count">0</div>
+                            <div class="metric-note neutral">Patients needing close review</div>
+                        </div>
+                        <div class="metric summary-card">
+                            <div class="metric-label">Active alerts</div>
+                            <div class="metric-value" id="patient-alert-count">0</div>
+                            <div class="metric-note neutral">Open AI or clinical reminders</div>
+                        </div>
+                        <div class="metric summary-card">
+                            <div class="metric-label">Selected page</div>
+                            <div class="metric-value" id="patient-page-count">1/1</div>
+                            <div class="metric-note neutral">Client-side pagination</div>
+                        </div>
+                    </div>
+                    <div class="card patient-panel">
+                        <div class="patient-toolbar">
+                            <div class="filter-row patient-filters">
+                                <input class="search" id="patient-search" oninput="renderPatients()"
+                                    placeholder="Search by name, ID, or phone">
+                                <select class="select" id="risk-filter" onchange="renderPatients()">
+                                    <option value="all">All risk levels</option>
+                                    <option>High</option>
+                                    <option>Moderate</option>
+                                    <option>Low</option>
+                                </select>
+                                <select class="select" id="sex-filter" onchange="renderPatients()">
+                                    <option value="all">All sex</option>
+                                    <option>Female</option>
+                                    <option>Male</option>
+                                    <option>Other</option>
+                                </select>
+                                <select class="select" id="sort-filter" onchange="renderPatients()">
+                                    <option value="last_desc">Newest visit</option>
+                                    <option value="risk_desc">Highest risk</option>
+                                    <option value="name_asc">Name A-Z</option>
+                                    <option value="age_desc">Age high to low</option>
+                                </select>
+                            </div>
+                            <div class="toolbar-actions">
+                                <button class="btn" onclick="renderPatients()">Refresh</button>
+                            </div>
+                        </div>
                         <div class="table-wrap">
                             <table>
                                 <thead>
@@ -189,54 +278,108 @@
                                 <tbody id="patients-table"></tbody>
                             </table>
                         </div>
+                        <div class="pagination-row">
+                            <span id="patients-range">Showing 0 of 0</span>
+                            <div class="pagination-actions">
+                                <button class="btn small" onclick="changePatientPage(-1)">Previous</button>
+                                <button class="btn small" onclick="changePatientPage(1)">Next</button>
+                            </div>
+                        </div>
                     </div>
                 </section>
-                <section class="page" id="profile"><button class="btn small" onclick="showPage('patients')">← Back to
-                        patients</button>
-                    <div class="profile-header" style="margin-top:14px">
-                        <div class="profile-avatar" id="profile-initials">CA</div>
-                        <div class="profile-name">
-                            <h1 id="profile-name">Chinwe Adebayo</h1>
-                            <p id="profile-details">Female · 52 years · PT-100284</p>
+                <section class="page" id="profile">
+                    <div class="page-title">
+                        <div>
+                            <h1>Patient details</h1>
+                            <p>Review demographics, vitals, AI predictions, and visit history.</p>
                         </div>
-                        <div class="profile-meta">
-                            <div>Phone<strong id="profile-phone">+234 803 123 2048</strong></div>
-                            <div>Blood group<strong>O+</strong></div>
-                            <div>Last visit<strong id="profile-last">12 Jun 2026</strong></div>
-                        </div><button class="btn primary" onclick="showPage('visit')">+ New visit</button>
+                        <div class="page-actions">
+                            <button class="btn" onclick="showPage('patients')">← Back to patients</button>
+                            <button class="btn primary" onclick="showPage('visit')">+ New visit</button>
+                        </div>
                     </div>
-                    <div class="tabs"><button class="active">Overview</button><button>Medical
-                            history</button><button>Visits</button><button>Prescriptions</button></div>
-                    <div class="patient-grid">
+                    <div class="card profile-hero">
+                        <div class="profile-header profile-header-enhanced">
+                            <div class="profile-avatar" id="profile-initials">CA</div>
+                            <div class="profile-name">
+                                <div class="eyebrow">Active patient record</div>
+                                <h1 id="profile-name">Chinwe Adebayo</h1>
+                                <p id="profile-details">Female · 52 years · PT-100284</p>
+                                <div class="profile-tags">
+                                    <span class="status blue" id="profile-risk-badge">High risk</span>
+                                    <span class="tag" id="profile-condition-badge">Essential hypertension</span>
+                                    <span class="tag" id="profile-alert-badge">BP 154/96 mmHg</span>
+                                </div>
+                            </div>
+                            <div class="profile-meta">
+                                <div>Phone<strong id="profile-phone">+234 803 123 2048</strong></div>
+                                <div>Last visit<strong id="profile-last">12 Jun 2026</strong></div>
+                                <div>Record ID<strong id="profile-id">PT-100284</strong></div>
+                            </div>
+                        </div>
+                        <div class="profile-stat-grid">
+                            <div class="metric profile-stat"><div class="metric-label">Blood pressure</div><div class="metric-value" id="profile-bp">154/96</div></div>
+                            <div class="metric profile-stat"><div class="metric-label">Glucose</div><div class="metric-value" id="profile-glucose">142</div></div>
+                            <div class="metric profile-stat"><div class="metric-label">BMI</div><div class="metric-value" id="profile-bmi">31.2</div></div>
+                            <div class="metric profile-stat"><div class="metric-label">Insulin</div><div class="metric-value" id="profile-insulin">88</div></div>
+                        </div>
+                    </div>
+
+                    <div class="patient-grid profile-grid">
                         <div>
                             <div class="card">
                                 <div class="card-head">
                                     <div>
-                                        <h2>Patient timeline</h2>
-                                        <p class="subtle">Clinical events and risk assessments</p>
+                                        <h2>Visit timeline</h2>
+                                        <p class="subtle">Chronological events, notes, and clinical changes.</p>
                                     </div>
                                 </div>
                                 <div class="timeline" id="timeline"></div>
                             </div>
-                        </div>
-                        <div>
-                            <div class="card" style="margin-bottom:18px">
+
+                            <div class="card profile-notes-card">
                                 <div class="card-head">
                                     <div>
-                                        <h2>Predictive risk assessment</h2>
+                                        <h2>Doctor notes</h2>
+                                        <p class="subtle">Latest clinician observations and reminders.</p>
+                                    </div>
+                                </div>
+                                <div class="profile-notes" id="profile-notes">Select a patient to view clinical notes.</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card profile-side-card">
+                                <div class="card-head">
+                                    <div>
+                                        <h2>AI prediction</h2>
                                         <p class="subtle">Latest model outputs · <span id="profile-last-update">—</span></p>
                                     </div>
                                 </div>
                                 <div class="risk-list" id="risk-breakdown"></div>
+                                <div class="profile-confidence">
+                                    <div><span>Confidence score</span><strong id="profile-confidence">—</strong></div>
+                                    <div><span>Risk percentage</span><strong id="profile-risk-percent">—</strong></div>
+                                </div>
                             </div>
-                            <div class="card">
+
+                            <div class="card profile-side-card">
                                 <div class="card-head">
                                     <div>
-                                        <h2>Clinical alerts</h2>
-                                        <p class="subtle">Rule-based flags requiring attention</p>
+                                        <h2>Current medications</h2>
+                                        <p class="subtle">Medication plan and adherence context.</p>
                                     </div>
                                 </div>
-                                <div id="clinical-alerts"></div>
+                                <div class="profile-stack" id="profile-medication">No medication information available.</div>
+                            </div>
+
+                            <div class="card profile-side-card">
+                                <div class="card-head">
+                                    <div>
+                                        <h2>Vitals and flags</h2>
+                                        <p class="subtle">Blood pressure, BMI, and unresolved alerts.</p>
+                                    </div>
+                                </div>
+                                <div class="profile-stack" id="clinical-alerts"></div>
                             </div>
                         </div>
                     </div>
@@ -245,58 +388,303 @@
                     <div class="page-title">
                         <div>
                             <h1>New clinical visit</h1>
-                            <p>Record a consultation, clinical observations, and predictive assessment.</p>
+                            <p>Record a consultation, vitals, symptoms, labs, and an AI-assisted assessment.</p>
+                        </div>
+                        <div class="page-actions">
+                            <button class="btn" onclick="showPage('patients')">Open patient list</button>
+                            <button class="btn primary" type="button" onclick="document.getElementById('visit-form')?.requestSubmit()">Save visit</button>
                         </div>
                     </div>
-                    <div class="card">
-                        <form id="visit-form" onsubmit="saveVisit(event)">
-                            <div class="form-section">
-                                <h2>Patient and visit details</h2>
-                                <div class="form-grid">
-                                        <div class="field"><label for="visit-patient">Patient</label><select
-                                            id="visit-patient"></select></div>
-                                    <div class="field"><label for="visit-type">Visit type</label><select
-                                            id="visit-type">
-                                            <option>Outpatient consultation</option>
-                                            <option>Follow-up</option>
-                                            <option>Emergency</option>
-                                        </select></div>
-                                </div>
-                            </div>
-                            <div class="form-section">
-                                <h2>Vital signs</h2>
-                                <div class="form-grid">
-                                    <div class="field"><label for="weight">Weight (kg)</label><input id="weight"
-                                            type="number" value="78" min="1" oninput="calculateBMI()"></div>
-                                    <div class="field"><label for="height">Height (cm)</label><input id="height"
-                                            type="number" value="158" min="1" oninput="calculateBMI()"></div>
-                                    <div class="field"><label for="bp">Blood pressure (mmHg)</label><input id="bp"
-                                            value="154/96"></div>
-                                    <div class="field"><label for="glucose">Random blood glucose (mg/dL)</label><input
-                                            id="glucose" type="number" value="142"></div>
-                                    <div class="field"><label>BMI (automatically calculated)</label>
-                                        <div class="bmi-readout" id="bmi">31.2 kg/m² · Obese</div>
-                                    </div>
-                                    <div class="field"><label for="pulse">Pulse rate (bpm)</label><input id="pulse"
-                                            type="number" value="84"></div>
-                                </div>
-                            </div>
-                            <div class="form-section">
-                                <h2>Clinical documentation</h2>
-                                <div class="form-grid">
-                                    <div class="field"><label for="diagnosis">Primary diagnosis</label><input
-                                            id="diagnosis" value="Essential hypertension"></div>
-                                    <div class="field"><label for="medication">Prescription</label><input
-                                            id="medication" value="Amlodipine 5 mg once daily"></div>
-                                    <div class="field full"><label for="notes">Clinical notes</label><textarea
-                                            id="notes">Reports intermittent headache. Advised reduced sodium intake, regular activity and BP review in four weeks.</textarea>
+                    <div class="visit-workflow">
+                        <form id="visit-form" class="visit-form" onsubmit="saveVisit(event)">
+                            <div class="card visit-card">
+                                <div class="card-head">
+                                    <div>
+                                        <div class="eyebrow">Patient selection</div>
+                                        <h2>Consultation setup</h2>
+                                        <p class="subtle">Select the patient and visit type before documenting the encounter.</p>
                                     </div>
                                 </div>
+                                <div class="form-grid visit-grid">
+                                    <div class="field full"><label for="visit-patient">Patient</label><select id="visit-patient" onchange="renderVisitPreview()"></select></div>
+                                    <div class="field"><label for="visit-type">Visit type</label><select id="visit-type" onchange="renderVisitPreview()"><option>Outpatient consultation</option><option>Follow-up</option><option>Emergency</option></select></div>
+                                    <div class="field"><label for="visit-priority">Priority</label><select id="visit-priority" onchange="renderVisitPreview()"><option>Routine</option><option>Urgent</option><option>Critical</option></select></div>
+                                </div>
                             </div>
-                            <div class="modal-actions"><button type="button" class="btn"
-                                    onclick="showPage('dashboard')">Cancel</button><button class="btn primary"
-                                    type="submit">Save visit & run risk assessment</button></div>
+
+                            <div class="card visit-card">
+                                <div class="card-head">
+                                    <div>
+                                        <div class="eyebrow">Clinical measurements</div>
+                                        <h2>Vitals and observations</h2>
+                                        <p class="subtle">Capture the core measurements used by the AI preview.</p>
+                                    </div>
+                                </div>
+                                <div class="form-grid visit-grid">
+                                    <div class="field"><label for="weight">Weight (kg)</label><input id="weight" type="number" value="78" min="1" oninput="calculateBMI(); renderVisitPreview()"></div>
+                                    <div class="field"><label for="height">Height (cm)</label><input id="height" type="number" value="158" min="1" oninput="calculateBMI(); renderVisitPreview()"></div>
+                                    <div class="field"><label for="bp">Blood pressure (mmHg)</label><input id="bp" value="154/96" oninput="renderVisitPreview()"></div>
+                                    <div class="field"><label for="glucose">Random blood glucose (mg/dL)</label><input id="glucose" type="number" value="142" oninput="renderVisitPreview()"></div>
+                                    <div class="field"><label for="pulse">Pulse rate (bpm)</label><input id="pulse" type="number" value="84" oninput="renderVisitPreview()"></div>
+                                    <div class="field"><label for="temperature">Temperature (°C)</label><input id="temperature" type="number" step="0.1" value="37.1" oninput="renderVisitPreview()"></div>
+                                    <div class="field"><label for="spo2">SpO2 (%)</label><input id="spo2" type="number" value="98" oninput="renderVisitPreview()"></div>
+                                    <div class="field"><label>BMI (automatically calculated)</label><div class="bmi-readout" id="bmi">31.2 kg/m² · Obese</div></div>
+                                </div>
+                            </div>
+
+                            <div class="card visit-card">
+                                <div class="card-head">
+                                    <div>
+                                        <div class="eyebrow">Symptoms and diagnosis</div>
+                                        <h2>Clinical reasoning</h2>
+                                        <p class="subtle">Document the presenting complaint and working diagnosis.</p>
+                                    </div>
+                                </div>
+                                <div class="form-grid visit-grid">
+                                    <div class="field full"><label for="symptoms">Symptoms</label><textarea id="symptoms" oninput="renderVisitPreview()" placeholder="Headache, fatigue, dizziness, shortness of breath"></textarea></div>
+                                    <div class="field"><label for="diagnosis">Primary diagnosis</label><input id="diagnosis" value="Essential hypertension" oninput="renderVisitPreview()"></div>
+                                    <div class="field"><label for="differential">Differential diagnosis</label><input id="differential" placeholder="Rule out diabetes, stroke, infection" oninput="renderVisitPreview()"></div>
+                                    <div class="field full"><label for="notes">Clinical notes</label><textarea id="notes">Reports intermittent headache. Advised reduced sodium intake, regular activity and BP review in four weeks.</textarea></div>
+                                </div>
+                            </div>
+
+                            <div class="card visit-card">
+                                <div class="card-head">
+                                    <div>
+                                        <div class="eyebrow">Medication and labs</div>
+                                        <h2>Treatment and investigation plan</h2>
+                                        <p class="subtle">Record prescribed medication and any relevant laboratory findings.</p>
+                                    </div>
+                                </div>
+                                <div class="form-grid visit-grid">
+                                    <div class="field"><label for="medication">Prescription</label><input id="medication" value="Amlodipine 5 mg once daily" oninput="renderVisitPreview()"></div>
+                                    <div class="field"><label for="follow-up-date">Follow-up date</label><input id="follow-up-date" type="date" oninput="renderVisitPreview()"></div>
+                                    <div class="field"><label for="lab-hba1c">HbA1c (%)</label><input id="lab-hba1c" type="number" step="0.1" value="7.4" oninput="renderVisitPreview()"></div>
+                                    <div class="field"><label for="lab-creatinine">Creatinine (mg/dL)</label><input id="lab-creatinine" type="number" step="0.1" value="1.2" oninput="renderVisitPreview()"></div>
+                                    <div class="field"><label for="lab-cholesterol">Cholesterol (mg/dL)</label><input id="lab-cholesterol" type="number" value="198" oninput="renderVisitPreview()"></div>
+                                    <div class="field"><label for="lab-urine">Urine protein</label><select id="lab-urine" onchange="renderVisitPreview()"><option>Negative</option><option>Trace</option><option>Positive</option></select></div>
+                                </div>
+                            </div>
+
+                            <div class="visit-actions card">
+                                <div>
+                                    <div class="eyebrow">Finalize</div>
+                                    <h2>Save the consultation record</h2>
+                                    <p class="subtle">The existing backend will store the encounter and update the patient timeline.</p>
+                                </div>
+                                <div class="visit-action-buttons">
+                                    <button type="button" class="btn" onclick="showPage('dashboard')">Cancel</button>
+                                    <button class="btn primary" type="submit">Save visit & run risk assessment</button>
+                                </div>
+                            </div>
                         </form>
+
+                        <aside class="visit-sidebar">
+                            <div class="card visit-summary-card">
+                                <div class="card-head">
+                                    <div>
+                                        <div class="eyebrow">Patient snapshot</div>
+                                        <h2 id="visit-patient-name">No patient selected</h2>
+                                        <p class="subtle" id="visit-patient-meta">Choose a patient to view their demographics and history.</p>
+                                    </div>
+                                </div>
+                                <div class="visit-snapshot-grid">
+                                    <div><span>Risk</span><strong id="visit-snapshot-risk">—</strong></div>
+                                    <div><span>Last visit</span><strong id="visit-snapshot-last">—</strong></div>
+                                    <div><span>Condition</span><strong id="visit-snapshot-condition">—</strong></div>
+                                    <div><span>Age</span><strong id="visit-snapshot-age">—</strong></div>
+                                </div>
+                            </div>
+
+                            <div class="card visit-summary-card">
+                                <div class="card-head">
+                                    <div>
+                                        <div class="eyebrow">AI prediction</div>
+                                        <h2 id="visit-ai-label">Awaiting assessment</h2>
+                                        <p class="subtle">Live preview based on the form inputs.</p>
+                                    </div>
+                                </div>
+                                <div class="ai-risk-meter">
+                                    <div class="ai-risk-value" id="visit-ai-risk">0%</div>
+                                    <div class="bar"><span id="visit-ai-risk-bar" style="width:0%"></span></div>
+                                    <p class="subtle" id="visit-ai-confidence">Confidence will update as fields change.</p>
+                                </div>
+                                <div class="visit-pill-row" id="visit-ai-badges"></div>
+                            </div>
+
+                            <div class="card visit-summary-card">
+                                <div class="card-head">
+                                    <div>
+                                        <div class="eyebrow">Clinical recommendations</div>
+                                        <h2>Preventive advice</h2>
+                                    </div>
+                                </div>
+                                <div class="profile-stack" id="visit-recommendations"></div>
+                            </div>
+
+                            <div class="card visit-summary-card">
+                                <div class="card-head">
+                                    <div>
+                                        <div class="eyebrow">Visit history</div>
+                                        <h2>Recent patient encounters</h2>
+                                    </div>
+                                </div>
+                                <div class="profile-stack" id="visit-history"></div>
+                            </div>
+                        </aside>
+                    </div>
+                </section>
+                <section class="page" id="prediction">
+                    <div class="page-title">
+                        <div>
+                            <h1>AI predictions</h1>
+                            <p>Run diabetes, hypertension, and stroke risk models from one clinical workspace.</p>
+                        </div>
+                        <div class="page-actions">
+                            <button class="btn" type="button" onclick="useActivePatientForPrediction()">Use active patient</button>
+                            <button class="btn primary" type="button" onclick="runPrediction()">Run prediction</button>
+                        </div>
+                    </div>
+
+                    <div class="prediction-workflow">
+                        <form class="card prediction-form-card" id="prediction-form" onsubmit="runPrediction(event)">
+                            <div class="card-head">
+                                <div>
+                                    <div class="eyebrow">Prediction setup</div>
+                                    <h2>Model inputs</h2>
+                                    <p class="subtle">Choose a disease model and supply the required patient features.</p>
+                                </div>
+                            </div>
+
+                            <div class="prediction-context-grid">
+                                <div class="field full">
+                                    <label for="prediction-patient">Patient</label>
+                                    <select id="prediction-patient" onchange="usePredictionPatient()"></select>
+                                </div>
+                                <div class="field">
+                                    <label for="prediction-disease">Disease model</label>
+                                    <select id="prediction-disease" onchange="renderPredictionFields()">
+                                        <option value="diabetes">Diabetes</option>
+                                        <option value="hypertension">Hypertension</option>
+                                        <option value="stroke">Stroke</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label for="prediction-profile">Profile source</label>
+                                    <select id="prediction-profile" onchange="renderPredictionFields()">
+                                        <option value="active">Active patient</option>
+                                        <option value="custom">Custom inputs</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="prediction-patient-card">
+                                <div>
+                                    <div class="eyebrow">Selected patient</div>
+                                    <h3 id="prediction-patient-name">No patient selected</h3>
+                                    <p id="prediction-patient-meta">Use a registered patient or switch to custom mode.</p>
+                                </div>
+                                <div class="prediction-patient-stats">
+                                    <span><strong id="prediction-patient-risk">—</strong> risk</span>
+                                    <span><strong id="prediction-patient-last">—</strong> last visit</span>
+                                    <span><strong id="prediction-patient-condition">—</strong> condition</span>
+                                </div>
+                            </div>
+
+                            <div class="prediction-field-group">
+                                <div class="card-head">
+                                    <div>
+                                        <div class="eyebrow">Feature inputs</div>
+                                        <h2 id="prediction-features-title">Diabetes inputs</h2>
+                                        <p class="subtle">The field set updates automatically for each model.</p>
+                                    </div>
+                                </div>
+                                <div class="form-grid prediction-feature-grid" id="prediction-feature-grid"></div>
+                            </div>
+
+                            <div class="prediction-actions">
+                                <button class="btn" type="button" onclick="resetPredictionForm()">Reset</button>
+                                <button class="btn primary" type="submit">Run prediction</button>
+                            </div>
+                        </form>
+
+                        <aside class="prediction-sidebar">
+                            <div class="card prediction-result-card">
+                                <div class="card-head">
+                                    <div>
+                                        <div class="eyebrow">Prediction result</div>
+                                        <h2 id="prediction-result-label">Awaiting analysis</h2>
+                                        <p class="subtle" id="prediction-result-summary">Run a model to view the result, probability, and guidance.</p>
+                                    </div>
+                                </div>
+                                <div class="prediction-score-grid">
+                                    <div>
+                                        <span>Risk level</span>
+                                        <strong id="prediction-risk-level">—</strong>
+                                    </div>
+                                    <div>
+                                        <span>Probability</span>
+                                        <strong id="prediction-probability">—</strong>
+                                    </div>
+                                    <div>
+                                        <span>Confidence</span>
+                                        <strong id="prediction-confidence">—</strong>
+                                    </div>
+                                </div>
+                                <div class="bar prediction-bar"><span id="prediction-bar-fill" style="width:0%"></span></div>
+                                <div class="visit-pill-row" id="prediction-result-badges"></div>
+                            </div>
+
+                            <div class="card prediction-result-card">
+                                <div class="card-head">
+                                    <div>
+                                        <div class="eyebrow">Feature importance</div>
+                                        <h2>What influenced the model</h2>
+                                    </div>
+                                </div>
+                                <div class="prediction-importance" id="prediction-importance"></div>
+                            </div>
+
+                            <div class="card prediction-result-card">
+                                <div class="card-head">
+                                    <div>
+                                        <div class="eyebrow">Recommendations</div>
+                                        <h2>Clinical guidance</h2>
+                                    </div>
+                                </div>
+                                <div class="profile-stack" id="prediction-recommendations"></div>
+                            </div>
+
+                            <div class="card prediction-result-card">
+                                <div class="card-head">
+                                    <div>
+                                        <div class="eyebrow">Preventive advice</div>
+                                        <h2>Preventive measures</h2>
+                                    </div>
+                                </div>
+                                <div class="profile-stack" id="prediction-preventive"></div>
+                            </div>
+
+                            <div class="card prediction-result-card">
+                                <div class="card-head">
+                                    <div>
+                                        <div class="eyebrow">Feature values</div>
+                                        <h2>Payload used by the model</h2>
+                                    </div>
+                                </div>
+                                <div class="profile-stack" id="prediction-feature-values"></div>
+                            </div>
+
+                            <div class="card prediction-result-card">
+                                <div class="card-head">
+                                    <div>
+                                        <div class="eyebrow">Prediction history</div>
+                                        <h2>Recent runs</h2>
+                                    </div>
+                                </div>
+                                <div class="profile-stack" id="prediction-history"></div>
+                            </div>
+                        </aside>
                     </div>
                 </section>
                 <section class="page" id="analytics">
@@ -304,66 +692,103 @@
                         <div>
                             <h1>Hospital analytics</h1>
                             <p>Aggregated, de-identified insights for operational planning.</p>
-                        </div><select class="select">
-                            <option>Last 6 months</option>
-                            <option>Last 12 months</option>
-                        </select>
+                        </div>
+                        <div class="analytics-toolbar">
+                            <select class="select" id="analytics-range" aria-label="Analytics range">
+                                <option>Last 6 months</option>
+                                <option>Last 12 months</option>
+                            </select>
+                            <button class="btn secondary" type="button" onclick="alert('Analytics export prepared for download.')">Export summary</button>
+                        </div>
                     </div>
                     <div class="metric-grid">
                         <div class="metric">
                             <div class="metric-label">Hypertension cases</div>
                             <div class="metric-value" id="hypertension-cases">476</div>
-                            <div class="metric-note">19.1% of active patients</div>
+                            <div class="metric-note" id="hypertension-note">Burden in the active cohort</div>
                         </div>
                         <div class="metric">
                             <div class="metric-label">Diabetes cases</div>
                             <div class="metric-value" id="diabetes-cases">312</div>
-                            <div class="metric-note">12.6% of active patients</div>
+                            <div class="metric-note" id="diabetes-note">Burden in the active cohort</div>
                         </div>
                         <div class="metric">
                             <div class="metric-label">High-risk cohort</div>
                             <div class="metric-value" id="high-risk-cohort">84</div>
-                            <div class="metric-note neutral">3.4% of active patients</div>
+                            <div class="metric-note neutral" id="high-risk-note">Patients flagged for follow-up</div>
                         </div>
                         <div class="metric">
                             <div class="metric-label">Average length of stay</div>
                             <div class="metric-value" id="average-length-of-stay">3.6 days</div>
-                            <div class="metric-note">↓ 0.4 days vs. prior period</div>
+                            <div class="metric-note" id="average-length-of-stay-note">Estimated from recent visits</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">Visits in period</div>
+                            <div class="metric-value" id="analytics-visits-total">0</div>
+                            <div class="metric-note" id="analytics-visits-note">Across monthly visit buckets</div>
                         </div>
                     </div>
-                    <div class="grid-2">
-                        <div class="card">
+                    <div class="analytics-layout">
+                        <div class="card chart-card analytics-wide-card">
                             <div class="card-head">
                                 <div>
-                                    <h2>New registrations</h2>
-                                    <p class="subtle">Monthly patient registrations</p>
+                                    <h2>Visit trend</h2>
+                                    <p class="subtle">Monthly volume across the selected reporting window</p>
                                 </div>
                             </div>
-                            <div class="bars" aria-label="Monthly registrations">
-                                <div class="bar-col"><i style="height:38%"></i>Jan</div>
-                                <div class="bar-col"><i style="height:51%"></i>Feb</div>
-                                <div class="bar-col"><i style="height:46%"></i>Mar</div>
-                                <div class="bar-col"><i style="height:65%"></i>Apr</div>
-                                <div class="bar-col"><i style="height:71%"></i>May</div>
-                                <div class="bar-col"><i style="height:88%"></i>Jun</div>
+                            <div class="bars analytics-bars" id="analytics-monthly-bars" aria-label="Monthly visits">
+                                <div class="bar-col"><i style="height:50%"></i>Jan</div>
+                                <div class="bar-col"><i style="height:65%"></i>Feb</div>
+                                <div class="bar-col"><i style="height:58%"></i>Mar</div>
+                                <div class="bar-col"><i style="height:76%"></i>Apr</div>
+                                <div class="bar-col"><i style="height:82%"></i>May</div>
+                                <div class="bar-col"><i style="height:94%"></i>Jun</div>
                             </div>
                         </div>
-                        <div class="card">
+                        <div class="card chart-card">
                             <div class="card-head">
                                 <div>
-                                    <h2>Prediction distribution</h2>
-                                    <p class="subtle">Latest assessments across active patients</p>
+                                    <h2>Risk distribution</h2>
+                                    <p class="subtle">Current patient mix by monitored risk level</p>
                                 </div>
                             </div>
-                            <div class="risk-list">
-                                <div class="risk-row"><span>Low risk</span>
-                                    <div class="bar"><span style="width:72%"></span></div><strong>1,789</strong>
+                            <div class="risk-list" id="analytics-risk-list">
+                                <div class="risk-row"><span>Low risk</span><div class="bar"><span style="width:72%"></span></div><strong>1,789</strong></div>
+                                <div class="risk-row"><span>Moderate risk</span><div class="bar amber"><span style="width:21%"></span></div><strong>522</strong></div>
+                                <div class="risk-row"><span>High risk</span><div class="bar red"><span style="width:7%"></span></div><strong>175</strong></div>
+                            </div>
+                        </div>
+                        <div class="card chart-card">
+                            <div class="card-head">
+                                <div>
+                                    <h2>Gender mix</h2>
+                                    <p class="subtle">Active patient distribution by recorded sex</p>
                                 </div>
-                                <div class="risk-row"><span>Moderate risk</span>
-                                    <div class="bar amber"><span style="width:21%"></span></div><strong>522</strong>
+                            </div>
+                            <div class="bars analytics-gender-bars" id="analytics-gender-bars" aria-label="Gender distribution">
+                                <div class="bar-col"><i style="height:58%"></i><span>Female</span><strong>0</strong></div>
+                                <div class="bar-col"><i style="height:42%"></i><span>Male</span><strong>0</strong></div>
+                            </div>
+                        </div>
+                        <div class="card chart-card">
+                            <div class="card-head">
+                                <div>
+                                    <h2>Operational insights</h2>
+                                    <p class="subtle">A clinical snapshot built from the same analytics summary</p>
                                 </div>
-                                <div class="risk-row"><span>High risk</span>
-                                    <div class="bar red"><span style="width:7%"></span></div><strong>175</strong>
+                            </div>
+                            <div class="analytics-insights" id="analytics-insights">
+                                <div class="analytics-insight-row">
+                                    <span>Average age</span><strong id="average-age">0.0 years</strong>
+                                </div>
+                                <div class="analytics-insight-row">
+                                    <span>Average stay</span><strong id="average-stay-insight">0.0 days</strong>
+                                </div>
+                                <div class="analytics-insight-row">
+                                    <span>Highest load month</span><strong id="analytics-peak-month">—</strong>
+                                </div>
+                                <div class="analytics-insight-row">
+                                    <span>High-risk share</span><strong id="analytics-high-risk-share">0%</strong>
                                 </div>
                             </div>
                         </div>
@@ -385,27 +810,77 @@
                     <div class="page-title">
                         <div>
                             <h1>Reports</h1>
-                            <p>Generate a patient, visit, risk, or facility report.</p>
+                            <p>Generate a patient, visit, risk, or facility report from the current EMR snapshot.</p>
+                        </div>
+                        <div class="reports-toolbar">
+                            <button class="btn secondary" type="button" onclick="downloadReport('analytics-summary')">Export analytics snapshot</button>
+                            <button class="btn primary" type="button" onclick="downloadReport('patient-summary')">Export patient summary</button>
                         </div>
                     </div>
-                    <div class="metric-grid"><button class="metric"
-                            onclick="alert('Patient summary report queued for download.')">
+                    <div class="metric-grid">
+                        <button class="metric" type="button" onclick="downloadReport('patient-summary')">
                             <div class="metric-label">Patient summary</div>
                             <div class="metric-value">↧</div>
-                            <div class="metric-note neutral">PDF export</div>
-                        </button><button class="metric" onclick="alert('Risk assessment report queued for download.')">
+                            <div class="metric-note neutral">CSV export</div>
+                        </button>
+                        <button class="metric" type="button" onclick="downloadReport('risk-registry')">
                             <div class="metric-label">Risk assessment</div>
                             <div class="metric-value">↧</div>
-                            <div class="metric-note neutral">PDF export</div>
-                        </button><button class="metric" onclick="alert('Analytics report queued for download.')">
+                            <div class="metric-note neutral">Risk registry export</div>
+                        </button>
+                        <button class="metric" type="button" onclick="downloadReport('analytics-summary')">
                             <div class="metric-label">Analytics report</div>
                             <div class="metric-value">↧</div>
-                            <div class="metric-note neutral">CSV / PDF export</div>
-                        </button><button class="metric" onclick="alert('Visit report queued for download.')">
+                            <div class="metric-note neutral">CSV export</div>
+                        </button>
+                        <button class="metric" type="button" onclick="downloadReport('visit-digest')">
                             <div class="metric-label">Visit report</div>
                             <div class="metric-value">↧</div>
-                            <div class="metric-note neutral">PDF export</div>
-                        </button></div>
+                            <div class="metric-note neutral">Digest export</div>
+                        </button>
+                    </div>
+                    <div class="reports-layout">
+                        <div class="card chart-card">
+                            <div class="card-head">
+                                <div>
+                                    <h2>Report overview</h2>
+                                    <p class="subtle">Ready-to-export summaries for clinical and operations review</p>
+                                </div>
+                            </div>
+                            <div class="reports-summary-grid" id="reports-summary-grid">
+                                <div class="analytics-insight-row"><span>Total patients</span><strong id="reports-total-patients">0</strong></div>
+                                <div class="analytics-insight-row"><span>High-risk patients</span><strong id="reports-high-risk-patients">0</strong></div>
+                                <div class="analytics-insight-row"><span>Visits this month</span><strong id="reports-visits-this-month">0</strong></div>
+                                <div class="analytics-insight-row"><span>Average age</span><strong id="reports-average-age">0.0 years</strong></div>
+                            </div>
+                        </div>
+                        <div class="card chart-card">
+                            <div class="card-head">
+                                <div>
+                                    <h2>Available exports</h2>
+                                    <p class="subtle">Each export is generated locally from the loaded EMR snapshot</p>
+                                </div>
+                            </div>
+                            <div class="profile-stack">
+                                <div class="profile-stack-item">
+                                    <strong>Patient summary</strong>
+                                    <span>Patient ID, name, age, sex, condition, risk, and last visit.</span>
+                                </div>
+                                <div class="profile-stack-item">
+                                    <strong>Risk registry</strong>
+                                    <span>Counts grouped by risk level with the affected patient IDs.</span>
+                                </div>
+                                <div class="profile-stack-item">
+                                    <strong>Analytics snapshot</strong>
+                                    <span>Condition burden, risk mix, gender mix, and visit trend totals.</span>
+                                </div>
+                                <div class="profile-stack-item">
+                                    <strong>Visit digest</strong>
+                                    <span>Recent clinical status for each patient and their current monitoring needs.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </section>
                 <section class="page" id="users">
                     <div class="page-title">
@@ -424,9 +899,53 @@
                             <h1>Settings</h1>
                             <p>Facility and clinical configuration.</p>
                         </div>
+                        <div class="settings-status" id="settings-status">Saved locally</div>
                     </div>
-                    <div class="card">
-                        <div class="empty">Settings are available to facility administrators.</div>
+                    <div class="settings-layout">
+                        <form class="card settings-form" onsubmit="saveSettings(event)">
+                            <div class="card-head">
+                                <div>
+                                    <h2>Facility profile</h2>
+                                    <p class="subtle">Configure the display identity used across the workspace.</p>
+                                </div>
+                            </div>
+                            <div class="form-grid">
+                                <div class="field"><label for="facility-name">Facility name</label><input id="facility-name" placeholder="e.g., General Hospital"></div>
+                                <div class="field"><label for="facility-location">Facility location</label><input id="facility-location" placeholder="e.g., Lagos, Nigeria"></div>
+                                <div class="field"><label for="facility-ward">Default ward</label><input id="facility-ward" placeholder="e.g., Outpatient clinic"></div>
+                                <div class="field"><label for="facility-contact">Support contact</label><input id="facility-contact" placeholder="e.g., +234 800 000 0000"></div>
+                            </div>
+
+                            <div class="form-section">
+                                <h3 class="form-heading">Workflow defaults</h3>
+                                <div class="form-grid">
+                                    <div class="field"><label for="settings-analytics-range">Analytics range</label><select id="settings-analytics-range"><option>Last 6 months</option><option>Last 12 months</option></select></div>
+                                    <div class="field"><label for="settings-prediction-profile">Prediction profile</label><select id="settings-prediction-profile"><option value="active">Active patient</option><option value="custom">Custom inputs</option></select></div>
+                                    <div class="field"><label for="settings-report-format">Report format</label><select id="settings-report-format"><option value="csv">CSV</option><option value="pdf">PDF</option><option value="both">CSV + PDF</option></select></div>
+                                    <div class="field"><label for="settings-sidebar-mode">Sidebar mode</label><select id="settings-sidebar-mode"><option value="expanded">Expanded</option><option value="compact">Compact</option></select></div>
+                                </div>
+                            </div>
+
+                            <div class="settings-actions">
+                                <button class="btn secondary" type="button" onclick="resetSettings()">Reset to defaults</button>
+                                <button class="btn primary" type="submit">Save changes</button>
+                            </div>
+                        </form>
+                        <div class="card settings-side">
+                            <div class="card-head">
+                                <div>
+                                    <h2>Current profile</h2>
+                                    <p class="subtle">These values are read from local browser storage.</p>
+                                </div>
+                            </div>
+                            <div class="settings-summary-list">
+                                <div class="analytics-insight-row"><span>Facility</span><strong id="settings-summary-facility">—</strong></div>
+                                <div class="analytics-insight-row"><span>Location</span><strong id="settings-summary-location">—</strong></div>
+                                <div class="analytics-insight-row"><span>Default ward</span><strong id="settings-summary-ward">—</strong></div>
+                                <div class="analytics-insight-row"><span>Report format</span><strong id="settings-summary-format">—</strong></div>
+                                <div class="analytics-insight-row"><span>Prediction profile</span><strong id="settings-summary-profile">—</strong></div>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>
@@ -435,21 +954,38 @@
     <div class="modal" id="patient-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal-card">
             <h2 id="modal-title">Register new patient</h2>
-            <p class="subtle">Create a de-identified prototype record.</p>
+            <p class="subtle">Create a de-identified prototype record with structured sections.</p>
             <form onsubmit="registerPatient(event)">
                 <div class="form-section">
+                    <h3 class="form-heading">Personal information</h3>
                     <div class="form-grid">
-                        <div class="field"><label for="new-name">Full name</label><input id="new-name" required
-                                placeholder="e.g., Ada Okeke"></div>
-                        <div class="field"><label for="new-phone">Phone number</label><input id="new-phone" required
-                                placeholder="e.g., +234 803 000 0000"></div>
-                        <div class="field"><label for="new-age">Age</label><input id="new-age" type="number" required
-                                min="0" max="120" placeholder="e.g., 42"></div>
-                        <div class="field"><label for="new-sex">Sex</label><select id="new-sex">
-                                <option>Female</option>
-                                <option>Male</option>
-                                <option>Other</option>
-                            </select></div>
+                        <div class="field"><label for="new-name">Full name</label><input id="new-name" required placeholder="e.g., Ada Okeke"></div>
+                        <div class="field"><label for="new-phone">Phone number</label><input id="new-phone" required placeholder="e.g., +234 803 000 0000"></div>
+                        <div class="field"><label for="new-age">Age</label><input id="new-age" type="number" required min="0" max="120" placeholder="e.g., 42"></div>
+                        <div class="field"><label for="new-sex">Sex</label><select id="new-sex"><option>Female</option><option>Male</option><option>Other</option></select></div>
+                        <div class="field full"><label for="new-address">Residential address</label><input id="new-address" placeholder="Street, city, state"></div>
+                    </div>
+                </div>
+                <div class="form-section">
+                    <h3 class="form-heading">Emergency contact</h3>
+                    <div class="form-grid">
+                        <div class="field"><label for="new-emergency-name">Contact name</label><input id="new-emergency-name" placeholder="Next of kin"></div>
+                        <div class="field"><label for="new-emergency-phone">Contact phone</label><input id="new-emergency-phone" placeholder="+234 801 000 0000"></div>
+                    </div>
+                </div>
+                <div class="form-section">
+                    <h3 class="form-heading">Medical information</h3>
+                    <div class="form-grid">
+                        <div class="field"><label for="new-condition">Previous conditions</label><input id="new-condition" placeholder="Hypertension, diabetes, etc."></div>
+                        <div class="field"><label for="new-allergies">Allergies</label><input id="new-allergies" placeholder="Drug or food allergies"></div>
+                        <div class="field full"><label for="new-lifestyle">Lifestyle factors</label><textarea id="new-lifestyle" placeholder="Smoking, diet, exercise, alcohol use"></textarea></div>
+                    </div>
+                </div>
+                <div class="form-section">
+                    <h3 class="form-heading">Insurance and access</h3>
+                    <div class="form-grid">
+                        <div class="field"><label for="new-insurance">Insurance provider</label><input id="new-insurance" placeholder="NHIA, private plan, none"></div>
+                        <div class="field"><label for="new-policy">Policy / member ID</label><input id="new-policy" placeholder="Optional"></div>
                     </div>
                 </div>
                 <div class="modal-actions"><button type="button" class="btn"

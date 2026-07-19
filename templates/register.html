@@ -1,0 +1,68 @@
+{% extends "auth_base.html" %}
+
+{% block content %}
+<h2>Create account</h2>
+<p>Register a mock staff profile for the hospital demo.</p>
+
+<form class="auth-form" id="register-form" data-auth-form="register">
+    <div class="form-grid">
+        <div class="field full">
+            <label for="register-name">Full name</label>
+            <input id="register-name" type="text" required placeholder="Dr. Ada Okeke">
+        </div>
+        <div class="field">
+            <label for="register-email">Staff email</label>
+            <input id="register-email" type="email" required placeholder="ada@hospital.org">
+        </div>
+        <div class="field">
+            <label for="register-phone">Phone number</label>
+            <input id="register-phone" type="tel" required placeholder="+234 803 000 0000">
+        </div>
+        <div class="field">
+            <label for="register-role">Role</label>
+            <select id="register-role" required>
+                <option>Doctor</option>
+                <option>Nurse</option>
+                <option>Receptionist</option>
+                <option>Administrator</option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="register-department">Department</label>
+            <select id="register-department" required>
+                <option>General Medicine</option>
+                <option>Cardiology</option>
+                <option>Endocrinology</option>
+                <option>Outpatient Clinic</option>
+                <option>Administration</option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="register-password">Password</label>
+            <input id="register-password" type="password" required minlength="6" placeholder="Create password">
+        </div>
+        <div class="field">
+            <label for="register-confirm">Confirm password</label>
+            <input id="register-confirm" type="password" required minlength="6" placeholder="Repeat password">
+        </div>
+    </div>
+
+    <div class="auth-actions">
+        <label class="auth-toggle">
+            <input type="checkbox" id="register-consent" required>
+            I confirm this is a demo profile
+        </label>
+        <button class="btn primary" type="submit">Create account</button>
+    </div>
+
+    <div class="auth-link-row">
+        <span>Already have an account? <a href="{{ url_for('login') }}">Sign in</a></span>
+        <a href="{{ url_for('index') }}">Return to dashboard</a>
+    </div>
+
+    <div class="auth-footer">
+        <span>Roles control the dashboard chrome after sign-in.</span>
+        <span>Passwords are stored only in the mock session.</span>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page_title }} | HealthWise EMR</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body class="auth-body" data-auth-page="{{ auth_page }}">
+    <div class="auth-shell">
+        <section class="auth-hero" aria-label="HealthWise EMR overview">
+            <div class="auth-hero-inner">
+                <a class="auth-brand" href="{{ url_for('index') }}">
+                    <span class="auth-brand-mark">✚</span>
+                    <span>HealthWise EMR</span>
+                </a>
+
+                <div class="auth-copy">
+                    <h1>Clinical software designed for modern hospital workflows.</h1>
+                    <p>
+                        Secure mock authentication, responsive dashboards, and AI-assisted
+                        care tools for a polished final-year EMR demonstration.
+                    </p>
+                </div>
+
+                <div class="auth-feature-grid">
+                    <article class="auth-feature">
+                        <strong>Secure access</strong>
+                        <span>Role-aware sign-in, profile pages, and session-aware navigation.</span>
+                    </article>
+                    <article class="auth-feature">
+                        <strong>Hospital branding</strong>
+                        <span>Professional layout, calm colors, and focused clinical messaging.</span>
+                    </article>
+                    <article class="auth-feature">
+                        <strong>Fast workflows</strong>
+                        <span>Local mock auth keeps the UI interactive without changing backend APIs.</span>
+                    </article>
+                    <article class="auth-feature">
+                        <strong>Mobile ready</strong>
+                        <span>Readable forms, stacked layouts, and touch-friendly controls on small screens.</span>
+                    </article>
+                </div>
+
+                <div class="auth-metrics">
+                    <div class="auth-metric">
+                        <small>Departments</small>
+                        <strong>4 roles</strong>
+                    </div>
+                    <div class="auth-metric">
+                        <small>Session mode</small>
+                        <strong>Local storage</strong>
+                    </div>
+                    <div class="auth-metric">
+                        <small>UI mode</small>
+                        <strong>Responsive</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="auth-hero-footer">
+                <span>Built for hospital information system demos.</span>
+                <span>FastAPI backend kept intact.</span>
+            </div>
+        </section>
+
+        <section class="auth-shell-panel">
+            <div class="auth-card">
+                <div class="auth-status">Mock authentication · no backend changes</div>
+                {% block content %}{% endblock %}
+            </div>
+        </section>
+    </div>
+
+    <script src="{{ url_for('static', path='auth.js') }}"></script>
+</body>
+</html>

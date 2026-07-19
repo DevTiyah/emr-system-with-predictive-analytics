@@ -1,0 +1,58 @@
+{% extends "auth_base.html" %}
+
+{% block content %}
+<h2>Profile</h2>
+<p>View the active mock user session and security metadata.</p>
+
+<div class="auth-summary">
+    <div class="auth-summary-card">
+        <div>
+            <strong data-session-field="name">Hospital Staff</strong>
+            <span data-session-field="role">Doctor</span>
+        </div>
+        <span class="status blue">Active session</span>
+    </div>
+    <div class="auth-summary-card">
+        <div>
+            <strong>Department</strong>
+            <span data-session-field="department">General Medicine</span>
+        </div>
+        <span class="status">Role based</span>
+    </div>
+    <div class="auth-summary-card">
+        <div>
+            <strong>Email</strong>
+            <span data-session-field="email">staff@hospital.org</span>
+        </div>
+        <span class="status">Verified</span>
+    </div>
+    <div class="auth-summary-card">
+        <div>
+            <strong>Phone</strong>
+            <span data-session-field="phone">+234 800 000 0000</span>
+        </div>
+        <span class="status">Contact</span>
+    </div>
+    <div class="auth-summary-card">
+        <div>
+            <strong>Last login</strong>
+            <span data-session-field="lastLogin">Just now</span>
+        </div>
+        <span class="status">Secure</span>
+    </div>
+</div>
+
+<div class="auth-empty" style="margin-top:18px">
+    Security settings, password changes, and future notifications can be managed from this profile area.
+</div>
+
+<div class="auth-actions" style="margin-top:18px">
+    <a class="btn" href="{{ url_for('index') }}">Open dashboard</a>
+    <a class="btn primary" href="{{ url_for('logout') }}">Logout</a>
+</div>
+
+<div class="auth-footer">
+    <span>Profile values are populated from the active local session.</span>
+    <span>No backend authentication was modified.</span>
+</div>
+{% endblock %}

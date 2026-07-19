@@ -1,0 +1,20 @@
+{% extends "auth_base.html" %}
+
+{% block content %}
+<h2>Signing out</h2>
+<p>Your mock session is being cleared.</p>
+
+<div class="auth-empty" id="logout-status">
+    Securely ending the local session and returning to the sign-in page.
+</div>
+
+<div class="auth-actions" style="margin-top:18px">
+    <a class="btn" href="{{ url_for('login') }}">Go to login</a>
+    <a class="btn primary" href="{{ url_for('index') }}">Stay on dashboard</a>
+</div>
+
+<div class="auth-footer">
+    <span>Session state is removed from local storage on this page.</span>
+    <span>You can sign in again with a different role.</span>
+</div>
+{% endblock %}
