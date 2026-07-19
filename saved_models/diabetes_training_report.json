@@ -1,5 +1,5 @@
 {
-  "dataset": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\datasets\\diabetes_data.csv",
+  "dataset": "/workspaces/emr-system-with-predictive-analytics/datasets/diabetes_data.csv",
   "rows": 64020,
   "target": "diabetes",
   "class_balance": {
@@ -189,10 +189,10 @@
     }
   },
   "artifacts": {
-    "model": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\diabetes_model.pkl",
-    "scaler": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\diabetes_scaler.pkl",
-    "feature_names": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\diabetes_feature_names.json",
-    "report": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\diabetes_training_report.json"
+    "model": "/workspaces/emr-system-with-predictive-analytics/saved_models/diabetes_model.pkl",
+    "scaler": "/workspaces/emr-system-with-predictive-analytics/saved_models/diabetes_scaler.pkl",
+    "feature_names": "/workspaces/emr-system-with-predictive-analytics/saved_models/diabetes_feature_names.json",
+    "report": "/workspaces/emr-system-with-predictive-analytics/saved_models/diabetes_training_report.json"
   },
   "feature_manifest": {
     "disease": "diabetes",

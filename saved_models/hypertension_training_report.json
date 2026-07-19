@@ -1,5 +1,5 @@
 {
-  "dataset": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\datasets\\hypertension_data.csv",
+  "dataset": "/workspaces/emr-system-with-predictive-analytics/datasets/hypertension_data.csv",
   "rows": 26083,
   "target": "target",
   "class_balance": {
@@ -189,10 +189,10 @@
     }
   },
   "artifacts": {
-    "model": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\hypertension_model.pkl",
-    "scaler": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\hypertension_scaler.pkl",
-    "feature_names": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\hypertension_feature_names.json",
-    "report": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\hypertension_training_report.json"
+    "model": "/workspaces/emr-system-with-predictive-analytics/saved_models/hypertension_model.pkl",
+    "scaler": "/workspaces/emr-system-with-predictive-analytics/saved_models/hypertension_scaler.pkl",
+    "feature_names": "/workspaces/emr-system-with-predictive-analytics/saved_models/hypertension_feature_names.json",
+    "report": "/workspaces/emr-system-with-predictive-analytics/saved_models/hypertension_training_report.json"
   },
   "feature_manifest": {
     "disease": "hypertension",

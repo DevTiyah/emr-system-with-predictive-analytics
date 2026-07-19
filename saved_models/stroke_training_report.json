@@ -1,5 +1,5 @@
 {
-  "dataset": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\datasets\\stroke_data.csv",
+  "dataset": "/workspaces/emr-system-with-predictive-analytics/datasets/stroke_data.csv",
   "rows": 40910,
   "target": "stroke",
   "class_balance": {
@@ -189,10 +189,10 @@
     }
   },
   "artifacts": {
-    "model": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\stroke_model.pkl",
-    "scaler": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\stroke_scaler.pkl",
-    "feature_names": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\stroke_feature_names.json",
-    "report": "C:\\Users\\USER\\Downloads\\emr flask app zip file\\emr flask app\\saved_models\\stroke_training_report.json"
+    "model": "/workspaces/emr-system-with-predictive-analytics/saved_models/stroke_model.pkl",
+    "scaler": "/workspaces/emr-system-with-predictive-analytics/saved_models/stroke_scaler.pkl",
+    "feature_names": "/workspaces/emr-system-with-predictive-analytics/saved_models/stroke_feature_names.json",
+    "report": "/workspaces/emr-system-with-predictive-analytics/saved_models/stroke_training_report.json"
   },
   "feature_manifest": {
     "disease": "stroke",
